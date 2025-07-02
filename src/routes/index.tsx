@@ -1,4 +1,5 @@
 import App from "@/App";
+import Home from "@/components/HomePage/Home";
 import AddBook from "@/pages/AddBook";
 import AllBooks from "@/pages/AllBooks";
 import BorrowSummary from "@/pages/BorrowSummary";
@@ -11,6 +12,10 @@ import { createBrowserRouter } from "react-router";
             path: '/',
            Component: App,
            children: [
+            {
+               path: '/',
+               Component:Home,
+            },
             {
                 path: 'add-books',
                 Component: AddBook

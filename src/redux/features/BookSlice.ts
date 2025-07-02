@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import type { IBook } from "@/types";
+import type { RootState } from "../store";
 
 interface InitialState {
   books: IBook[];
@@ -8,6 +9,7 @@ interface InitialState {
 const initialState: InitialState = {
   books: [
     {
+      _id: "asdfvddshhksgdj",
       title: "The Theory of Everything",
       author: "Stephen Hawking",
       image:
@@ -16,9 +18,10 @@ const initialState: InitialState = {
       isbn: "978015331463",
       description: "An overview of cosmology and black holes.",
       copies: 5,
-      available: true,
+      available: false,
     },
     {
+      _id: "asdfvddshhkssdfgdj",
       title: "The Theory of Everything",
       author: "Stephen Hawking",
       image:
@@ -34,10 +37,14 @@ const initialState: InitialState = {
 
 export const counterSlice = createSlice({
   name: "book",
- 
   initialState,
   reducers: {},
-});
+}); 
+
+ 
+ export const selectBooks = (state: RootState) => {
+   return state.books.books ;
+ }
 
 
 
