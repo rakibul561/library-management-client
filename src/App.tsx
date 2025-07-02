@@ -1,13 +1,15 @@
-
-import './App.css'
-import { Button } from './components/ui/button'
+import { Outlet } from "react-router"
+import Navbar from "./layouts/Navbar"
+import Footer from "./layouts/Footer"
 
 function App() {
 
 
   return (
-     <div>
-        <Button> Click me </Button>
+     <div> 
+      <Navbar/>
+       <Outlet/>
+       <Footer/>
      </div>
   )
 }
