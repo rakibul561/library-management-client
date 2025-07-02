@@ -38,7 +38,11 @@ const initialState: InitialState = {
 export const counterSlice = createSlice({
   name: "book",
   initialState,
-  reducers: {},
+  reducers: {
+  addBook: (state, action) => {
+    state.books.push(action.payload); // ✅ now valid
+  }
+}
 }); 
 
  
@@ -47,5 +51,6 @@ export const counterSlice = createSlice({
  }
 
 
+ export const {addBook} = counterSlice.actions;
 
 export default counterSlice.reducer;
