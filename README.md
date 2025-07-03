@@ -1,127 +1,78 @@
-Library Management Client
-Overview
-Welcome to the Library Management Client, the frontend application for a robust library management system. This project offers an intuitive and user-friendly interface to manage books, members, and all essential library operations. Built with modern web technologies, it aims to streamline the processes of borrowing, returning, and cataloging books, making library administration efficient and accessible.
+# 📚 Library Management System — Client
 
-This client application works alongside a separate backend API (not included in this repository) to deliver full functionality.
+A clean, minimal, and interactive library management frontend built with modern tools like **React**, **Redux Toolkit Query**, **TypeScript**, and **Tailwind CSS**.  
+Easily add, edit, delete, and borrow books — all through a seamless UI powered by reusable components and efficient API integration.
 
-Features
-User Authentication & Authorization: Secure login and role-based access for librarians and administrators.
+---
 
-Book Management:
+## ✨ Key Highlights
 
-Add new books with details like title, author, ISBN, genre, and quantity.
+- ⚡ Fast and responsive SPA built with Vite + React  
+- 🔄 Powerful data fetching using RTK Query  
+- 🔒 Type-safe with TypeScript interfaces  
+- 🎨 Beautiful UI with Tailwind CSS + shadcn/ui  
+- 🔔 Instant feedback with toast (sonner)  
+- 🧩 Reusable modal and table components  
+- 📦 RESTful API integration for backend connectivity  
 
-View a comprehensive list of all available books.
+---
 
-Search and filter books using various criteria.
+## 🚀 Core Features
 
-Update and delete book records.
+Here’s what users can do with the app:
 
-Member Management:
+1. **📚 Browse All Books** — Instantly view all available books in a dynamic table format  
+2. **➕ Add New Book** — Add a new book with essential details using a responsive modal form  
+3. **✏️ Edit Book Information** — Update any book’s data including title, author, genre, and more  
+4. **🗑️ Delete a Book** — Remove any unwanted or outdated book entries  
+5. **📖 Borrow a Book** — Borrow available books and track their availability in real-time  
 
-Register new library members.
+---
 
-View and manage member profiles.
+## 🧠 Tech Stack
 
-Search for members.
+| Tech                         | Description                          |
+|------------------------------|------------------------------------|
+| **React**                    | UI library for building components |
+| **Redux Toolkit Query**      | RTK Query for async API interaction|
+| **TypeScript**               | Static typing and code safety       |
+| **Tailwind CSS**             | Utility-first CSS framework         |
+| **shadcn/ui**                | Accessible & elegant UI components  |
+| **React Hook Form**          | Forms with built-in validation      |
+| **Sonner**                   | Toast-based notifications           |
 
-Update and delete member records.
+---
 
-Borrowing & Returning:
+## 📁 Folder Structure
 
-Streamlined process for issuing books to members.
+```plaintext
+src/
+├── api/                      # RTK Query API slice
+│   └── bookApi.ts            # Book-related API endpoints
+├── components/               # Reusable UI components
+│   ├── BookTable.tsx         # Table component to list books
+│   ├── AddTaskModal.tsx      # Reusable modal for Add/Edit book
+│   └── ...                   # Other reusable UI components
+├── constants/                # Constants like genre list, etc.
+│   └── index.ts              # Genre enum or static lists
+├── pages/                    # Page-level components/routes
+│   ├── Home.tsx              # Home page with all books
+│   ├── AddBook.tsx           # Page for adding a new book
+│   └── ...                   # Future pages (e.g., Borrow Summary)
+├── redux/                    # Redux store setup
+│   ├── store.ts              # Configures Redux store
+│   └── ...                   # Any future slices
+├── types/                    # Global TypeScript types/interfaces
+│   └── bookTypes.ts          # Book-related interfaces
+├── App.tsx                   # Root app component
+├── main.tsx                  # Application entry point
+└── index.css                 # Tailwind base styles
 
-Easy recording of book returns.
+| Method | Endpoint         | Purpose        |
+| ------ | ---------------- | -------------- |
+| GET    | `/api/books`     | Get all books  |
+| POST   | `/api/books`     | Add a new book |
+| PATCH  | `/api/books/:id` | Edit a book    |
+| DELETE | `/api/books/:id` | Delete a book  |
+| POST   | `/api/borrow`    | Borrow a book  |
 
-Track borrowed books and their due dates.
-
-Intuitive User Interface: A clean and responsive design ensures a smooth experience across different devices.
-
-Dashboard (Planned/Future): A quick overview of library statistics, popular books, and overdue items.
-
-Technologies Used
-React: A JavaScript library for building user interfaces.
-
-React Router DOM: For declarative routing in React applications.
-
-Axios: Promise-based HTTP client for making API requests.
-
-Tailwind CSS: (Assuming you're using Tailwind for styling) For rapid UI development and styling.
-
-[Add any other major libraries/frameworks you've used, e.g., Redux, Context API, etc.]
-
-Getting Started
-Follow these steps to get your development environment up and running.
-
-Prerequisites
-Before you begin, make sure you have the following installed:
-
-Node.js (LTS version recommended)
-
-npm or Yarn (npm is usually bundled with Node.js)
-
-Installation
-Clone the repository:
-
-Bash
-
-git clone https://github.com/rakibul561/library-management-client.git
-cd library-management-client
-Install dependencies:
-
-Bash
-
-npm install
-# or
-yarn install
-Configuration
-This client application needs a backend API to function correctly. You'll need to configure the API base URL.
-
-Create a .env file in the root of your project:
-
-REACT_APP_API_BASE_URL=YOUR_BACKEND_API_URL
-Replace YOUR_BACKEND_API_URL with the actual URL of your library management backend API. For example: http://localhost:5000/api or https://your-production-api.com/api.
-
-Running the Application
-To start the development server:
-
-Bash
-
-npm start
-# or
-yarn start
-This will open the application in your browser at http://localhost:3000 (or another available port).
-
-Project Structure
-library-management-client/
-├── public/                 # Public assets (index.html, favicon, etc.)
-├── src/
-│   ├── assets/             # Images, icons, etc.
-│   ├── components/         # Reusable UI components
-│   ├── config/             # Environment variables or app-wide configurations
-│   ├── contexts/           # React Context API for global state (if used)
-│   ├── hooks/              # Custom React hooks (if used)
-│   ├── pages/              # Top-level components representing different routes/pages
-│   ├── services/           # API interaction logic (e.g., axios instances)
-│   ├── utils/              # Utility functions
-│   ├── App.js              # Main application component
-│   ├── index.js            # Entry point of the React application
-│   └── index.css           # Global styles
-├── .env.example            # Example environment variables
-├── .gitignore              # Files/folders to be ignored by Git
-├── package.json            # Project dependencies and scripts
-└── README.md               # This file
-Contributing
-We welcome contributions to make this project even better! If you'd like to contribute, please follow these steps:
-
-Fork the repository.
-
-Create a new branch for your feature or bug fix: git checkout -b feature/your-feature-name or bugfix/issue-description.
-
-Make your changes and ensure they are well-tested.
-
-Commit your changes with clear and concise commit messages.
-
-Push your branch to your forked repository.
-
-Open a Pull Request to the main branch of this repository, describing your changes in detail.
