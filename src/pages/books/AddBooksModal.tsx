@@ -44,7 +44,7 @@ export function AddTaskModel() {
     },
   });
 
-  const [createBook, { data, isLoading }] = useAddBooksMutation();
+  const [createBook, { isLoading }] = useAddBooksMutation();
 
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
     console.log("✅ Submitted Data: ", data); 
