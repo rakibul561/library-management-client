@@ -44,7 +44,7 @@ export function AddTaskModel() {
     },
   });
 
-  const [createBook, { data, isError, isLoading }] = useAddBooksMutation();
+  const [createBook, { data, isLoading }] = useAddBooksMutation();
 
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
     console.log("✅ Submitted Data: ", data); 
@@ -55,6 +55,7 @@ export function AddTaskModel() {
   
     } catch (error) {
       console.error("❌ Submit Error: ", error);
+         toast.error("Something went wrong")
     }
     
   };
@@ -62,14 +63,14 @@ export function AddTaskModel() {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button>Add Task</Button>
+        <Button>Add Books</Button>
       </DialogTrigger>
       <DialogContent className="sm:max-w-[425px]">
         <DialogDescription className="sr-only">
-          fill up this form to add task,
+          fill up this form to add Books,
         </DialogDescription>
         <DialogHeader>
-          <DialogTitle>Add Task</DialogTitle>
+          <DialogTitle>Add Books</DialogTitle>
         </DialogHeader>
 
         <Form {...form}>
