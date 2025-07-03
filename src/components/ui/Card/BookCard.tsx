@@ -1,5 +1,6 @@
 import { useDeleteBookMutation } from '@/api/bookApi';
 import { UpdateBookModal } from '@/pages/books/UpdateBook';
+import { AddBorrowBook } from '@/pages/borrow/BorrowModal';
 import type { IBook } from '@/types';
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
@@ -65,11 +66,7 @@ const BookCard: React.FC<Props> = ({ book }) => {
             >
               Delete
             </button>
-            <button
-              className="flex-1 w-full bg-green-600 text-white py-2 px-4 rounded-lg hover:bg-green-700 transition-colors duration-200 ease-in-out text-sm font-medium"
-            >
-              Borrow
-            </button>
+           <AddBorrowBook bookId={_id}/>
           </div>
         </div>
       </div>

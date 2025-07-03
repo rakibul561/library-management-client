@@ -5,7 +5,7 @@ export const bookApi = createApi({
   baseQuery: fetchBaseQuery({
     baseUrl: "http://localhost:3000/api",
   }),
-  tagTypes: ["book"],
+  tagTypes: ["book", "borrow"], // ✅ added 'borrow' tag
   endpoints: (builder) => ({
     addBooks: builder.mutation({
       query: (bookData) => ({
@@ -20,6 +20,7 @@ export const bookApi = createApi({
       query: () => "/books",
       providesTags: ["book"],
     }),
+
     deleteBook: builder.mutation({
       query: (id) => ({
         url: `/books/${id}`,
@@ -27,6 +28,7 @@ export const bookApi = createApi({
       }),
       invalidatesTags: ["book"],
     }),
+
     updateBook: builder.mutation({
       query: ({ id, updatedData }) => ({
         url: `/books/${id}`,
@@ -35,6 +37,21 @@ export const bookApi = createApi({
       }),
       invalidatesTags: ["book"],
     }),
+
+    borrowBook: builder.mutation({
+      query: (borrowData) => ({
+        url: `/borrow`, 
+        method: "POST",
+        body: borrowData,
+      }),
+      invalidatesTags: ["book", "borrow"],
+    }),
+      getAllBorrowSummary: builder.query({
+      query: () => "/borrow",
+      providesTags: ["borrow"],
+    }),
+
+
   }),
 });
 
@@ -43,4 +60,4 @@ export const {
   useGetAllBooksQuery,
   useDeleteBookMutation,
   useUpdateBookMutation,
-} = bookApi;
+  useBorrowBookMutation, useGetAllBorrowSummaryQuery } = bookApi;
