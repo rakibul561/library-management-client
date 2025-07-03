@@ -67,3 +67,33 @@ src/
 ├── App.tsx                   # Root app component
 ├── main.tsx                  # Application entry point
 └── index.css                 # Tailwind base styles
+
+| Method | Endpoint         | Purpose        |
+| ------ | ---------------- | -------------- |
+| GET    | `/api/books`     | Get all books  |
+| POST   | `/api/books`     | Add a new book |
+| PATCH  | `/api/books/:id` | Edit a book    |
+| DELETE | `/api/books/:id` | Delete a book  |
+| POST   | `/api/borrow`    | Borrow a book  |
+
+🛠️ Getting Started
+1. Clone the repository
+bash
+Copy
+Edit
+git clone https://github.com/rakibul561/library-management-client.git
+cd library-management-client
+2. Install dependencies
+bash
+Copy
+Edit
+npm install
+# or
+yarn install
+3. Run the development server
+bash
+Copy
+Edit
+npm run dev
+# or
+yarn dev
