@@ -45,7 +45,6 @@ export function UpdateBookModal({ isOpen, onClose, defaultValues }: UpdateBookMo
 
   const [updateBook, { isLoading }] = useUpdateBookMutation();
 
-  // যখন modal খুলবে, তখন পুরোনো ডেটা বসিয়ে দাও
   useEffect(() => {
     if (defaultValues) {
       form.reset(defaultValues);
@@ -56,7 +55,7 @@ export function UpdateBookModal({ isOpen, onClose, defaultValues }: UpdateBookMo
     try {
       await updateBook({ id: defaultValues._id, updatedData: data }).unwrap();
       toast.success("Book updated successfully!");
-      onClose(); // Close the modal after success
+      onClose(); 
     } catch (error) {
       toast.error("Failed to update book");
       console.error("Update error:", error);

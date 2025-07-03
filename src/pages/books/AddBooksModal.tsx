@@ -63,7 +63,7 @@ export function AddTaskModel() {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button>Add Books</Button>
+        <Button className="text-xl bg-red-500 p-4 ">Add Books</Button>
       </DialogTrigger>
       <DialogContent className="sm:max-w-[425px]">
         <DialogDescription className="sr-only">

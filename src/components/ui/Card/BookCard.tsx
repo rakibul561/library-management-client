@@ -3,6 +3,7 @@ import { UpdateBookModal } from '@/pages/books/UpdateBook';
 import type { IBook } from '@/types';
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { toast } from 'sonner';
 
 
 interface Props {
@@ -16,8 +17,11 @@ const BookCard: React.FC<Props> = ({ book }) => {
   const handleDeleteBook = async (id: string) => {
     try {
       await deleteBook(id).unwrap();
+      toast.success("Books deleted succesfulluy")
     } catch (err) {
       console.error('Delete failed:', err);
+      toast.error("something went wrong")
+
     }
   };
 
