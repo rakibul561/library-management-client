@@ -1,3 +1,4 @@
+import { useAddBooksMutation } from "@/api/bookApi";
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
@@ -8,26 +9,54 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import { Form, FormControl, FormField, FormItem, FormLabel } from "@/components/ui/form";
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+} from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
-import { addBook } from "@/redux/features/BookSlice";
-import { useAppDispatch } from "@/redux/hook";
-import type { IBook } from "@/types";
 import { DialogDescription } from "@radix-ui/react-dialog";
 import { useForm, type FieldValues, type SubmitHandler } from "react-hook-form";
+import { toast } from "sonner";
 
+export function AddTaskModel() {
+  // ✅ defaultValues দিয়ে form initialize করছি
+  const form = useForm({
+    defaultValues: {
+      title: "",
+      author: "",
+      image: "",
+      genre: "",
+      isbn: "",
+      copies: 0,
+      available: true,
+      description: "",
+    },
+  });
 
-export function AddTaskModel() { 
-  const form = useForm(); 
+  const [createBook, { data, isError, isLoading }] = useAddBooksMutation();
 
-   
-  const disPatch = useAppDispatch();
-
-
-  const onSubmit:SubmitHandler<FieldValues> = (data) => {
-    disPatch(addBook(data as IBook))
+  const onSubmit: SubmitHandler<FieldValues> = async (data) => {
+    console.log("✅ Submitted Data: ", data); 
+    try {
+      const res = await createBook(data).unwrap();
+      console.log("📦 Server Response: ", res);
+      toast.success("data created succesfully")
+  
+    } catch (error) {
+      console.error("❌ Submit Error: ", error);
+    }
+    
   };
 
   return (
@@ -36,13 +65,16 @@ export function AddTaskModel() {
         <Button>Add Task</Button>
       </DialogTrigger>
       <DialogContent className="sm:max-w-[425px]">
-        <DialogDescription className="sr-only"> fill up  this from to add task, </DialogDescription>
+        <DialogDescription className="sr-only">
+          fill up this form to add task,
+        </DialogDescription>
         <DialogHeader>
           <DialogTitle>Add Task</DialogTitle>
         </DialogHeader>
 
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
+            {/* Title */}
             <FormField
               control={form.control}
               name="title"
@@ -50,11 +82,129 @@ export function AddTaskModel() {
                 <FormItem>
                   <FormLabel>Title</FormLabel>
                   <FormControl>
-                    <Input {...field} value={field.value || "" } />
+                    <Input {...field} />
                   </FormControl>
                 </FormItem>
               )}
-            /> 
+            />
+
+            {/* Author */}
+            <FormField
+              control={form.control}
+              name="author"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Author</FormLabel>
+                  <FormControl>
+                    <Input {...field} />
+                  </FormControl>
+                </FormItem>
+              )}
+            />
+
+            {/* Image */}
+            <FormField
+              control={form.control}
+              name="image"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Image</FormLabel>
+                  <FormControl>
+                    <Input {...field} />
+                  </FormControl>
+                </FormItem>
+              )}
+            />
+
+            <FormField 
+              control={form.control}
+              name="genre"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Genre</FormLabel>
+                  <Select
+                    onValueChange={field.onChange}
+                    defaultValue={field.value}
+                  >
+                    <FormControl>
+                      <SelectTrigger className="w-full">
+                        <SelectValue placeholder="Select Genre" />
+                      </SelectTrigger>
+                    </FormControl>
+                    <SelectContent>
+                      <SelectItem value="FICTION">FICTION</SelectItem>
+                      <SelectItem value="NON_FICTION">NON_FICTION</SelectItem>
+                      <SelectItem value="SCIENCE">SCIENCE</SelectItem>
+                      <SelectItem value="HISTORY">HISTORY</SelectItem>
+                      <SelectItem value="BIOGRAPHY">BIOGRAPHY</SelectItem>
+                      <SelectItem value="FANTASY">FANTASY</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </FormItem>
+              )}
+            />
+
+            {/* ISBN */}
+            <FormField
+              control={form.control}
+              name="isbn"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>ISBN</FormLabel>
+                  <FormControl>
+                    <Input {...field} />
+                  </FormControl>
+                </FormItem>
+              )}
+            />
+
+            {/* Copies (Number) */}
+            <FormField
+              control={form.control}
+              name="copies"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Copies</FormLabel>
+                  <FormControl>
+                    <Input
+                      type="number"
+                      value={field.value}
+                      onChange={(e) => {
+                        const value = e.target.value;
+                        field.onChange(value === "" ? "" : Number(value));
+                      }}
+                    />
+                  </FormControl>
+                </FormItem>
+              )}
+            />
+
+            {/* Available (Boolean) */}
+            <FormField
+              control={form.control}
+              name="available"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Available</FormLabel>
+                  <Select
+                    onValueChange={(value) => field.onChange(value === "true")}
+                    defaultValue={field.value ? "true" : "false"}
+                  >
+                    <FormControl>
+                      <SelectTrigger className="w-full">
+                        <SelectValue placeholder="Select Value" />
+                      </SelectTrigger>
+                    </FormControl>
+                    <SelectContent>
+                      <SelectItem value="true">True</SelectItem>
+                      <SelectItem value="false">False</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </FormItem>
+              )}
+            />
+
+            {/* Description */}
             <FormField
               control={form.control}
               name="description"
@@ -62,42 +212,21 @@ export function AddTaskModel() {
                 <FormItem>
                   <FormLabel>Description</FormLabel>
                   <FormControl>
-                    <Textarea {...field} value={field.value || "" } />
+                    <Textarea {...field} />
                   </FormControl>
                 </FormItem>
               )}
-            /> 
-
-
-            <FormField
-          control={form.control}
-          name="priority"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Priority</FormLabel>
-              <Select onValueChange={field.onChange} defaultValue={field.value}>
-                <FormControl>
-                  <SelectTrigger>
-                    <SelectValue placeholder="Select priority" />
-                  </SelectTrigger>
-                </FormControl>
-                <SelectContent>
-                  <SelectItem value="low">Low</SelectItem>
-                  <SelectItem value="medium">Medium</SelectItem>
-                  <SelectItem value="high">High</SelectItem>
-                
-                </SelectContent>
-              </Select>
-             
-            </FormItem>
-          )}
-        />
+            />
 
             <DialogFooter>
               <DialogClose asChild>
-                <Button variant="outline" type="button">Cancel</Button>
+                <Button variant="outline" type="button">
+                  Cancel
+                </Button>
               </DialogClose>
-              <Button type="submit">Save changes</Button>
+              <Button type="submit" disabled={isLoading}>
+                {isLoading ? "Saving..." : "Save changes"}
+              </Button>
             </DialogFooter>
           </form>
         </Form>
