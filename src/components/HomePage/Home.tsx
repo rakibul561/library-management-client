@@ -1,22 +1,11 @@
-import AllBooks from "@/pages/AllBooks";
-import Carosel from "./Carosel";
+import wave from '../../assets/wave.svg'
+import Hero from './Hero';
 
 export default function Home() {
   return (
-    <div>
-      <Carosel />
-      <div>
-        <div className="text-center justify-center mt-8 mb-8 ">
-          <h2 className="text-3xl font-bold">All Books</h2>
-          <hr />
-          <p className="text-xl font-semibold">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto <br />
-            repellendus, quam consectetur sapiente repellat recusandae est
-            voluptas error vero quos.
-          </p>
-        </div>
-        <AllBooks />
-      </div>
+    <div className='flex relative flex-col justify-center items-center min-h-[calc(100vh-116px)]'>
+      <Hero/>
+      <img className='absolute bottom-0 w-full' src={wave} alt='' />
     </div>
   );
 }

@@ -65,7 +65,7 @@ export function AddBorrowBook({ bookId }: AddBorrowBookProps) {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button variant="outline" className="bg-green-600 text-white">
+        <Button  className="bg-[#155DFC] text-white ">
           Borrow Book
         </Button>
       </DialogTrigger>
