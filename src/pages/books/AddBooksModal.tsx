@@ -1,5 +1,6 @@
 import { useAddBooksMutation } from "@/api/bookApi";
 import { Button } from "@/components/ui/button";
+import { IoMdAddCircleOutline } from "react-icons/io";
 import {
   Dialog,
   DialogClose,
@@ -30,7 +31,6 @@ import { useForm, type FieldValues, type SubmitHandler } from "react-hook-form";
 import { toast } from "sonner";
 
 export function AddTaskModel() {
-  // ✅ defaultValues দিয়ে form initialize করছি
   const form = useForm({
     defaultValues: {
       title: "",
@@ -51,7 +51,8 @@ export function AddTaskModel() {
     try {
       const res = await createBook(data).unwrap();
       console.log("📦 Server Response: ", res);
-      toast.success("data created succesfully");
+      toast.success("data created succesfully"); 
+      form.reset();
     } catch (error) {
       console.error("❌ Submit Error: ", error);
       toast.error("Something went wrong");
@@ -61,7 +62,7 @@ export function AddTaskModel() {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button className="text-xl bg-red-500 p-4 ">Add Books</Button>
+        <Button className="text-xl bg-[#155DFC] p-4 ">  <IoMdAddCircleOutline/> Add Books</Button>
       </DialogTrigger>
       <DialogContent className="sm:max-w-[425px]">
         <DialogDescription className="sr-only">

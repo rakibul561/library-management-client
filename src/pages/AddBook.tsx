@@ -1,5 +1,5 @@
 import { AddTaskModel } from "./books/AddBooksModal";
-
+import books from "../../src/assets/books.jpg";
 export default function AddBook() {
   // const [isOpen, setIsOpen] = useState(false);
   return (
@@ -8,20 +8,17 @@ export default function AddBook() {
         <div
           className="w-full bg-center bg-cover h-[38rem]"
           style={{
-            backgroundImage:
-              "url('https://i.ibb.co/GQ22pcSN/Shelves-CC.jpg')",
+            backgroundImage: `url(${books})`,
           }}
         >
           <div className="flex items-center justify-center w-full h-full bg-gray-900/40">
             <div className="text-center">
-              <h1 className="text-3xl space-y-4 p-4 font-semibold text-white lg:text-4xl">
-                Add your first <span className="text-red-500">Book</span> and
-                begin <br />{" "}
-                <span className="text-yellow-400">
-                  Organizing your Reading World
-                </span>
-                .
+              <h1 className="text-3xl md:text-5xl font-bold text-white mb-6 drop-shadow">
+                📚 Build a Community, One Book at a Time
               </h1>
+              <p className="text-xl md:text-2xl text-gray-200 max-w-3xl mb-8 drop-shadow">
+                Add your books and help others discover amazing stories.
+              </p>
 
               <div className="mt-12">
                 <AddTaskModel />
