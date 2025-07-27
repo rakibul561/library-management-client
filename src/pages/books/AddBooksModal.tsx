@@ -47,17 +47,15 @@ export function AddTaskModel() {
   const [createBook, { isLoading }] = useAddBooksMutation();
 
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
-    console.log("✅ Submitted Data: ", data); 
+    console.log("✅ Submitted Data: ", data);
     try {
       const res = await createBook(data).unwrap();
       console.log("📦 Server Response: ", res);
-      toast.success("data created succesfully")
-  
+      toast.success("data created succesfully");
     } catch (error) {
       console.error("❌ Submit Error: ", error);
-         toast.error("Something went wrong")
+      toast.error("Something went wrong");
     }
-    
   };
 
   return (
@@ -117,7 +115,7 @@ export function AddTaskModel() {
               )}
             />
 
-            <FormField 
+            <FormField
               control={form.control}
               name="genre"
               render={({ field }) => (
