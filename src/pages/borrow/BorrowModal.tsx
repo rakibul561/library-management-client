@@ -21,6 +21,7 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import { IoMdAddCircleOutline } from "react-icons/io";
 
 // ✅ Form value types
 interface BorrowFormValues {
@@ -47,7 +48,7 @@ export function AddBorrowBook({ bookId }: AddBorrowBookProps) {
     try {
       const payload = {
         book: bookId,
-        quantity: data.quantity, // ✅ already a number
+        quantity: data.quantity,
         dueDate: data.dueDate,
       };
 
@@ -65,7 +66,8 @@ export function AddBorrowBook({ bookId }: AddBorrowBookProps) {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button  className="bg-[#155DFC] text-white ">
+        <Button  className="border bg-white text-black border-red-300 ">
+          <IoMdAddCircleOutline/>
           Borrow Book
         </Button>
       </DialogTrigger>

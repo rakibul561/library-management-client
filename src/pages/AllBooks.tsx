@@ -22,8 +22,14 @@ export default function AllBooks() {
   const books = data?.data || [];
 
   return (
-    <div className="min-h-[calc(108vh-200px)]">
+    <div className="min-h-[calc(108vh-200px)]"> 
+     
+      <div className="max-w-7xl mx-auto ">
+       <h2 className="text-start items-start justify-start text-3xl font-bold p-8">All Books</h2>
+     </div>
+     
       <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-3 gap-6 p-4">
+
         {books.map((book: any) => (
           <BookCard key={book._id} book={book} />
         ))}
