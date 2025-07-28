@@ -91,7 +91,7 @@ export function UpdateBookModal({ isOpen, onClose, defaultValues }: UpdateBookMo
               <FormItem>
                 <FormLabel>Genre</FormLabel>
                 <Select onValueChange={field.onChange} defaultValue={field.value}>
-                  <FormControl>
+                  <FormControl className="w-full">
                     <SelectTrigger><SelectValue placeholder="Select Genre" /></SelectTrigger>
                   </FormControl>
                   <SelectContent>
@@ -125,24 +125,7 @@ export function UpdateBookModal({ isOpen, onClose, defaultValues }: UpdateBookMo
               </FormItem>
             )} />
 
-            {/* Available */}
-            <FormField control={form.control} name="available" render={({ field }) => (
-              <FormItem>
-                <FormLabel>Available</FormLabel>
-                <Select
-                  onValueChange={(value) => field.onChange(value === "true")}
-                  defaultValue={field.value ? "true" : "false"}
-                >
-                  <FormControl>
-                    <SelectTrigger><SelectValue placeholder="Select" /></SelectTrigger>
-                  </FormControl>
-                  <SelectContent>
-                    <SelectItem value="true">True</SelectItem>
-                    <SelectItem value="false">False</SelectItem>
-                  </SelectContent>
-                </Select>
-              </FormItem>
-            )} />
+        
 
             {/* Description */}
             <FormField control={form.control} name="description" render={({ field }) => (

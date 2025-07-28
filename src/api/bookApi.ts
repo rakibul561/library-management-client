@@ -3,13 +3,13 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 export const bookApi = createApi({
   reducerPath: "bookApi",
   baseQuery: fetchBaseQuery({
-    baseUrl: "http://localhost:5000/api",
+    baseUrl: import.meta.env.VITE_API_BASE_URL,
   }),
   tagTypes: ["book", "borrow"], 
   endpoints: (builder) => ({
     addBooks: builder.mutation({
       query: (bookData) => ({
-        url: "/books/create-book",
+        url: "/api/books/create-book",
         method: "POST",
         body: bookData,
       }),
@@ -17,13 +17,13 @@ export const bookApi = createApi({
     }),
 
     getAllBooks: builder.query({
-      query: () => "/books",
+      query: () => "/api/books",
       providesTags: ["book"],
     }),
 
     deleteBook: builder.mutation({
       query: (id) => ({
-        url: `/books/${id}`,
+        url: `/api/books/${id}`,
         method: "DELETE",
       }),
       invalidatesTags: ["book"],
@@ -31,7 +31,7 @@ export const bookApi = createApi({
 
     updateBook: builder.mutation({
       query: ({ id, updatedData }) => ({
-        url: `/books/${id}`,
+        url: `/api/books/${id}`,
         method: "PUT",
         body: updatedData,
       }),
@@ -40,14 +40,14 @@ export const bookApi = createApi({
 
     borrowBook: builder.mutation({
       query: (borrowData) => ({
-        url: `/borrow`, 
+        url: `/api/borrow`, 
         method: "POST",
         body: borrowData,
       }),
       invalidatesTags: ["book", "borrow"],
     }),
       getAllBorrowSummary: builder.query({
-      query: () => "/borrow",
+      query: () => "/api/borrow",
       providesTags: ["borrow"],
     }),
 

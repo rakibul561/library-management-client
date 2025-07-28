@@ -179,30 +179,7 @@ export function AddTaskModel() {
               )}
             />
 
-            {/* Available (Boolean) */}
-            <FormField
-              control={form.control}
-              name="available"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Available</FormLabel>
-                  <Select
-                    onValueChange={(value) => field.onChange(value === "true")}
-                    defaultValue={field.value ? "true" : "false"}
-                  >
-                    <FormControl>
-                      <SelectTrigger className="w-full">
-                        <SelectValue placeholder="Select Value" />
-                      </SelectTrigger>
-                    </FormControl>
-                    <SelectContent>
-                      <SelectItem value="true">True</SelectItem>
-                      <SelectItem value="false">False</SelectItem>
-                    </SelectContent>
-                  </Select>
-                </FormItem>
-              )}
-            />
+         
 
             {/* Description */}
             <FormField

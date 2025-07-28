@@ -8,7 +8,7 @@ export function BorrowSummary() {
   console.log("data is ", data);
 
   if (isLoading) return <Loading />;
-  if (error) return <p>Something Went Wrong</p>;
+  if (error) return <p>Something Went Wrong....</p>;
 
   return (
     <div className="min-h-[calc(104vh-200px)]">

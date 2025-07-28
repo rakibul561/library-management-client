@@ -15,7 +15,7 @@ const Navbar: React.FC = () => {
     const navLinkStyle =
         "transition font-medium capitalize px-2 py-1 ";
     const activeStyle =
-        " border-b-2 border-[#155DFC]";
+        " border-b-2 border-[#155DFC] text-[#155DFC]";
 
 
   return (
@@ -83,8 +83,25 @@ const Navbar: React.FC = () => {
       {isOpen && (
         <div className="md:hidden bg-white dark:bg-gray-900 px-4 pb-4 space-y-2 text-black dark:text-white">
          
-          <div className="pt-2">
+          <div className=" m-3">
+               <NavLink
+                    to="/add-books"
+                    className={({ isActive }) =>
+                        isActive ? `${navLinkStyle} ${activeStyle}` : navLinkStyle
+                    }
+                >
+                    Add Books
+                </NavLink>       
+               <NavLink
+                    to="/borrow-summary"
+                    className={({ isActive }) =>
+                        isActive ? `${navLinkStyle} ${activeStyle}` : navLinkStyle
+                    }
+                >
+                    Borrow Summary
+                </NavLink>  
             <ModeToggle />
+
           </div>
         </div>
       )}

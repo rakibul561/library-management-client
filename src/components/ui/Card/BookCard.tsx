@@ -30,14 +30,14 @@ const BookCard: React.FC<Props> = ({ book }) => {
 
   return (
     <>
-      <div className="rounded-xl shadow-lg border border-gray-200 dark:border-gray-700 overflow-hidden bg-white dark:bg-gray-900 hover:shadow-xl transition-shadow duration-300 ease-in-out">
+      <div className="rounded-xl  shadow-lg border border-gray-200 dark:border-gray-700 overflow-hidden bg-white dark:bg-gray-900 hover:shadow-xl transition-shadow duration-300 ease-in-out">
   <img
     src={
       image ||
       "https://via.placeholder.com/400x250?text=No+Image+Available"
     }
     alt={title}
-    className="w-full h-48 object-cover object-center"
+    className="w-full h-96 object-cover object-center"
   />
   <div className="p-5 space-y-3">
     <h2 className="text-xl font-bold text-gray-800 dark:text-gray-100 leading-tight">
